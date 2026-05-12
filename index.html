@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fennec Dev Solutions — Ingénierie Web</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --bg: #0a0a0b;
+      --surface: rgba(255, 255, 255, 0.03);
+      --accent: #d4af37; 
+      --ink: #ffffff;
+      --ink-dim: #a1a1aa;
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
+    html, body {
+      min-height: 100svh;
+      background: radial-gradient(circle at top center, #1c1c1f 0%, #0a0a0b 100%);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 4rem 1.5rem;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+    }
+
+    /* Header - Titre plus grand */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8rem;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      border-left: 4px solid var(--accent);
+      padding-left: 1.2rem;
+    }
+
+    .wordmark {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 1.4rem; /* Agrandissement */
+      line-height: 1;
+    }
+
+    .solutions {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      color: var(--accent);
+      margin-top: 0.3rem;
+      font-weight: 600;
+    }
+
+    .badge {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.7rem;
+      padding: 0.5rem 1.2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px; /* Plus carré pour le côté pro */
+      color: var(--ink-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    /* Hero - Reformulation */
+    .hero { margin-bottom: 6rem; }
+
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 7vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 2.5rem;
+      background: linear-gradient(to bottom, #fff 60%, #888 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      max-width: 800px;
+    }
+
+    .hero-sub {
+      color: var(--ink-dim);
+      font-size: 1.15rem;
+      max-width: 650px;
+      position: relative;
+    }
+
+    .hero-sub strong {
+        color: var(--ink);
+        font-weight: 500;
+    }
+
+    /* Grid */
+    .cta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .cta-card {
+      background: var(--surface);
+      backdrop-filter: blur(10px);
+      padding: 2.5rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cta-card:hover {
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .cta-tag {
+      color: var(--accent);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: block;
+      letter-spacing: 0.2em;
+    }
+
+    .cta-title { margin-bottom: 1rem; font-size: 1.4rem; font-weight: 600; }
+
+    .cta-body {
+      color: var(--ink-dim);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+	.cta-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem; /* Espace entre les liens */
+    }
+
+    .cta-link {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .cta-link svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .footer {
+      width: 100%;
+      max-width: 900px;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--ink-dim);
+      font-size: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      opacity: 0.6;
+    }
+	@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  .brand .wordmark {
+    font-size: 1.1rem;
+  }
+}
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .hero, .cta-card { animation: fadeIn 1s ease-out forwards; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header class="topbar">
+      <div class="brand">
+        <span class="wordmark">Fennec Dev</span>
+        <span class="solutions">Solutions</span>
+      </div>
+      <span class="badge"><span class="dot"></span>En construction</span>
+    </header>
+
+    <section class="hero">
+      <h1 class="hero-title">L'ingénierie logicielle au service de votre vision web.</h1>
+      <p class="hero-sub">
+        Expert en <strong>systèmes critiques</strong> durant une décennie, j'allie désormais cette culture de la fiabilité à une double compétence <strong>Full Stack Java / Angular</strong>. Je transpose les standards de l'ingénierie logicielle de haute précision vers le web pour concevoir des applications sur-mesure et hautement scalables à Toulouse.
+      </p>
+    </section>
+
+    <div class="cta-grid">
+      <div class="cta-card">
+        <span class="cta-tag">Vous avez un projet ?</span>
+        <h2 class="cta-title">Expertise Full Stack</h2>
+        <p class="cta-body">Conception de sites et d'applications métiers sur-mesure. Une approche rigoureuse pour des résultats durables.</p>
+        <a class="cta-link" href="mailto:contact@fennecdev.fr">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+          Discutons de votre projet
+        </a>
+      </div>
+
+      <div class="cta-card">
+        <span class="cta-tag">Vous recrutez en aéronautique ?</span>
+        <h2 class="cta-title">Expertise Flight Control Systems</h2>
+        <p class="cta-body">Spécialiste en Flight Control Systems, j'accompagne vos équipes en conception, implémentation, V&V et intégration.</p>
+		<div class="cta-links">
+        <a class="cta-link" href="https://linkedin.com/in/aboushaba">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V9h4v1.5A6 6 0 0 1 16 8z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          Parcours Professionnel
+        </a>
+		<a class="cta-link" href="mailto:abdelouahab.boushaba@gmail.com">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+          Prise de contact
+        </a>
+		</div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <span>Toulouse, France</span>
+      <span>&copy; 2026 Fennec Dev Solutions </span>
+    </footer>
+  </main>
+</body>
+</html>
